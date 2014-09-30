@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+        <property name='dialect'>org.hibernate.dialect.MySQLDialect</property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheProvider</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+        
+        <!--<mapping class="net.schastny.contactmanager.domain.Contact" />-->
+        <mapping class="info.velial.support.domain.Payment" />
+        <mapping class="info.velial.support.domain.Provider"/>
+        <mapping class="info.velial.support.domain.Terminal"/>
+	</session-factory>
+</hibernate-configuration>
