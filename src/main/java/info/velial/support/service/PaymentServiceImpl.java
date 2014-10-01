@@ -36,7 +36,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Transactional
-    public Payment getPaymentsByFilter(String account, String dateStart, String dateEnd) {
+    public List<Payment> getPaymentsByFilter(String account, String dateStart, String dateEnd) {
         return paymentDAO.getPaymentsByFilter(account, dateStart, dateEnd);
     }
 

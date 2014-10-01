@@ -17,17 +17,28 @@ http://www.springframework.org/schema/security/spring-security-3.0.xsd">
         <logout logout-url="/logout" logout-success-url="/index" />
 
         <anonymous username="guest" granted-authority="ROLE_ANONYMOUS" />
-		<remember-me />
+		<!--<remember-me />-->
 	</http>
 
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
-				<user name="admin" password="pass" authorities="ROLE_ADMIN,ROLE_USER" />
+				<user name="admin" password="ghjcnjgbpltw" authorities="ROLE_ADMIN,ROLE_USER" />
 				<user name="user1" password="1111" authorities="ROLE_USER" />
 				<user name="user2" password="2222" disabled="true" authorities="ROLE_USER" />
 			</user-service>
 		</authentication-provider>
+
+        <!--<authentication-provider user-service-ref="ptksUser">-->
+            <!--<password-encoder hash="md5" />-->
+        <!--</authentication-provider>-->
+
+        <!--<authentication-provider>-->
+            <!--<password-encoder hash="md5"/>-->
+            <!--<jdbc-user-service data-source-ref="dataSource"-->
+                               <!--users-by-username-query="SELECT u.login as username, u.password as password, u.active as enabled FROM jwcms.users u WHERE u.login = ?"-->
+                               <!--authorities-by-username-query="SELECT u.login as username, 'ROLE_USER' as authority FROM jwcms.users u WHERE u.login = ?" />-->
+        <!--</authentication-provider>-->
 	</authentication-manager>
 
     <global-method-security secured-annotations="enabled" />

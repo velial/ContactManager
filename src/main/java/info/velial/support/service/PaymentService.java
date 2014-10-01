@@ -14,5 +14,5 @@ public interface PaymentService {
 
     public Payment getPaymentById(Integer paymentId);
 
-    public Payment getPaymentsByFilter(String account, String dateStart, String dateEnd);
+    public List<Payment> getPaymentsByFilter(String account, String dateStart, String dateEnd);
 }

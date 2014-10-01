@@ -40,15 +40,44 @@ public class PaymentDAOImpl implements PaymentDAO {
     }
 
     @SuppressWarnings("unchecked")
-    public Payment getPaymentsByFilter(String account, String dateStart, String dateEnd)
+    public List<Payment> getPaymentsByFilter(String account, String dateStart, String dateEnd)
     {
-        return (Payment) sessionFactory.getCurrentSession()
+        if (!account.isEmpty() && dateStart.isEmpty() && dateEnd.isEmpty()) {
+            return sessionFactory.getCurrentSession()
+                    .createQuery("from payments where phone=?")
+                    .setString(0,account)
+                    .setFirstResult(0)
+                    .setMaxResults(1)
+                    .list();
+        }
+
+        if (!account.isEmpty() && !dateStart.isEmpty() && dateEnd.isEmpty()) {
+            return sessionFactory.getCurrentSession()
+                    .createQuery("from payments where phone=? and date>=?")
+                    .setString(0,account)
+                    .setString(1,dateStart)
+                    .setFirstResult(0)
+                    .setMaxResults(1)
+                    .list();
+        }
+
+        if (!account.isEmpty() && dateStart.isEmpty() && !dateEnd.isEmpty()) {
+            return sessionFactory.getCurrentSession()
+                    .createQuery("from payments where phone=? and date<=?")
+                    .setString(0,account)
+                    .setString(1,dateEnd)
+                    .setFirstResult(0)
+                    .setMaxResults(1)
+                    .list();
+        }
+
+        return sessionFactory.getCurrentSession()
                 .createQuery("from payments where phone=? and date>=? and date<=?")
                 .setString(0,account)
                 .setString(1,dateStart)
                 .setString(2,dateEnd)
                 .setFirstResult(0)
-                .setMaxResults(10)
+                .setMaxResults(1)
                 .list();
     }
 }

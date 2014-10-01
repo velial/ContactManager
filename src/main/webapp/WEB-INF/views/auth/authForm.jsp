@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         <label for="j_password"><spring:message code="label.authForm.password"/></label>
-        <input type="text" class="form-control" id="j_password" name="j_password">
+        <input type="password" class="form-control" id="j_password" name="j_password">
     </div>
     <div class="checkbox">
         <label>

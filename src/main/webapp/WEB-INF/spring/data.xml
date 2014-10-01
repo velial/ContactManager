@@ -32,7 +32,9 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
 		p:location="/WEB-INF/jdbc.properties" />
 
-	<!-- Непосредственно бин dataSource -->
+    <bean id="ptksUser" class="info.velial.support.security.ptksUserDetailsService"></bean>
+
+    <!-- Непосредственно бин dataSource -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="${jdbc.driverClassName}" 

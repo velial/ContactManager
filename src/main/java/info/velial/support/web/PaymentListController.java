@@ -75,6 +75,11 @@ public class PaymentListController {
             dateEnd = request.getParameter("inputDateEnd");
         } catch (Exception e) {}
 
+        if (paymentId.isEmpty() && account.isEmpty() && dateStart.isEmpty() && dateEnd.isEmpty())
+        {
+            return "/payments/findPayments";
+        }
+
         model.addAttribute("payments",paymentService.getPaymentsByFilter(account,dateStart,dateEnd));
         return "/payments/findPayments";
     }
