@@ -55,7 +55,7 @@ public class PaymentListController {
     @RequestMapping(value = "/findPayments")
     public String findPayments(
             HttpServletRequest request,
-            Model model)
+            Map<String, Object> map)
     {
 
         String paymentId = "";
@@ -75,12 +75,25 @@ public class PaymentListController {
             dateEnd = request.getParameter("inputDateEnd");
         } catch (Exception e) {}
 
-        if (paymentId.isEmpty() && account.isEmpty() && dateStart.isEmpty() && dateEnd.isEmpty())
+
+        if (paymentId!=null) {
+            if (!paymentId.isEmpty()) {
+                Integer paymentId_int = -1;
+                try {
+                    paymentId_int = Integer.parseInt(paymentId);
+                    map.put("lastPayments", paymentService.getPaymentsByFilter(paymentId_int, "", "", ""));
+                } catch (Exception e) {
+                }
+                return "/payments/findPayments";
+            }
+        }
+
+        if (paymentId==null && account==null && dateStart==null && dateEnd==null)
         {
             return "/payments/findPayments";
         }
 
-        model.addAttribute("payments",paymentService.getPaymentsByFilter(account,dateStart,dateEnd));
+        map.put("lastPayments",paymentService.getPaymentsByFilter(-1,account,dateStart,dateEnd));
         return "/payments/findPayments";
     }
 }

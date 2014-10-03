@@ -45,7 +45,7 @@
                 <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_USER">
                     <li><a href="/logout"><spring:message code="label.topnav.auth.logout"/> </a></li>
                 </sec:authorize>
-                <sec:authorize ifAnyGranted='ROLE_ADMIN'>
+                <sec:authorize ifAnyGranted='ROLE_ADMIN,ROLE_USER'>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.topnav.payments"/> <b class="caret"></b></a>
                         <ul class="dropdown-menu">

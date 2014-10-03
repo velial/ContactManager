@@ -14,6 +14,6 @@ public interface PaymentDAO {
 
     public Payment getPaymentById(Integer paymentId);
 
-    public List<Payment> getPaymentsByFilter(String account, String dateStart, String dateEnd);
+    public List<Payment> getPaymentsByFilter(Integer paymentId, String dateStart, String dateEnd, String account);
 
 }

@@ -21,24 +21,33 @@ http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 	</http>
 
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="admin" password="ghjcnjgbpltw" authorities="ROLE_ADMIN,ROLE_USER" />
-				<user name="user1" password="1111" authorities="ROLE_USER" />
-				<user name="user2" password="2222" disabled="true" authorities="ROLE_USER" />
-			</user-service>
-		</authentication-provider>
+		<!--<authentication-provider>-->
+			<!--<user-service>-->
+				<!--<user name="admin" password="ghjcnjgbpltw" authorities="ROLE_ADMIN,ROLE_USER" />-->
+				<!--<user name="user1" password="1111" authorities="ROLE_USER" />-->
+				<!--<user name="user2" password="2222" disabled="true" authorities="ROLE_USER" />-->
+			<!--</user-service>-->
+		<!--</authentication-provider>-->
+
+        <!--<authentication-provider>-->
+            <!--<password-encoder hash="md5" />-->
+            <!--<user-service>-->
+                <!--<user name="admin" password="a8dfe99e92080607c9bedd592f92c59c" authorities="ROLE_ADMIN,ROLE_USER" />-->
+                <!--<user name="user" password="21ac4eff527c9eeb67f8a41df167398e" authorities="ROLE_ADMIN,ROLE_USER" />-->
+            <!--</user-service>-->
+        <!--</authentication-provider>-->
+
 
         <!--<authentication-provider user-service-ref="ptksUser">-->
             <!--<password-encoder hash="md5" />-->
         <!--</authentication-provider>-->
 
-        <!--<authentication-provider>-->
-            <!--<password-encoder hash="md5"/>-->
-            <!--<jdbc-user-service data-source-ref="dataSource"-->
-                               <!--users-by-username-query="SELECT u.login as username, u.password as password, u.active as enabled FROM jwcms.users u WHERE u.login = ?"-->
-                               <!--authorities-by-username-query="SELECT u.login as username, 'ROLE_USER' as authority FROM jwcms.users u WHERE u.login = ?" />-->
-        <!--</authentication-provider>-->
+        <authentication-provider>
+            <password-encoder hash="md5"/>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="SELECT u.login as username, lower(u.password) as password, u.active as enabled FROM jwcms.users u WHERE u.login = ?"
+                               authorities-by-username-query="SELECT u.login as username, 'ROLE_USER' as authority FROM jwcms.users u WHERE u.login = ?" />
+        </authentication-provider>
 	</authentication-manager>
 
     <global-method-security secured-annotations="enabled" />

@@ -1,5 +1,3 @@
-<%@ page import="java.util.List" %>
-<%@ page import="info.velial.support.domain.Payment" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -38,5 +36,7 @@
         </div>
     </div>
 </form>
+
+<jsp:include page="lastPaymentsTable.jsp"/>
 
 <jsp:include page="../../template/footer.jsp"/>
